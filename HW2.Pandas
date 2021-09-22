@@ -2,6 +2,21 @@ import pandas as pd
 earthquake_df = '/content/drive/MyDrive/earthquakes.csv'
 df = pd.read_csv(earthquake_df)
 #Exercise 1
-df2 = df[(df['magType'] == 'ml') & (df['type'] == 'explosion')]
-len(df2)
+df1 = df[(df['magType'] == 'ml') & (df['type'] == 'explosion')]
+len(df1)
 #Exercise 2
+df2 = dfmag[(df.place.str.contains('Alaska')) & (~df.place.str.contains('\d\d\d', regex = True))].mean()
+df2
+#Exercise 3
+df['time'] = pd.to_datetime(df['time'], unit = 'ms')
+df['time']
+q = pd.DatetimeIndex(df['time']).month
+print(q)
+q1 = df.mag[(q >= 1) & (q <= 3)]
+q2 = df.mag[(q >= 4) & (q <= 6)]
+q3 = df.mag[(q >= 7) & (q <= 9)]
+q4 = df.mag[(q >= 10) & (q <= 12)]
+print(f'mean of mag in q1 = {q1.mean()}')
+print(f'mean of mag in q2 = {q2.mean()}')
+print(f'mean of mag in q3 = {q3.mean()}')
+print(f'mean of mag in q4 = {q4.mean()}')
