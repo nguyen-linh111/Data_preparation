@@ -1,0 +1,17 @@
+#Exercise 1
+import pandas as pd
+#a)
+df = pd.read_csv('/aapl.csv')
+df1 = pd.read_csv('/amzn.csv')
+df2 = pd.read_csv('/fb.csv')
+df3 = pd.read_csv('/goog.csv')
+df4 = pd.read_csv('/nflx.csv')
+#b
+df['ticker'] = 'AAPL'
+df1['ticker'] = 'AMZN'
+df2['ticker'] = 'FB'
+df3['ticker'] = 'GOOG'
+df4['ticker'] = 'NFLX'
+#c
+df = pd.concat([df1,df2,df3,df4,df5], axis = 0, join = 'inner').sort_index
+df
