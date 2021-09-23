@@ -47,3 +47,10 @@ df.head(5)
 df.set_index('date', inplace = True)
 df.sort_index
 df.head(5)
+
+#d
+df1 = df.replace('United_States_of_America', 'USA').replace('United Kingdom','UK')
+df1.head()
+
+#e
+
