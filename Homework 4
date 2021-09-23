@@ -36,7 +36,7 @@ df.sort_values(by = ['volume'], ascending= True).head(7)
 #Exercise 2
 #a
 df = pd.read_csv('/covid19_cases.csv')
-df.head(5)
+df.head
 
 #b
 df['date'] = df['dateRep']
@@ -49,8 +49,14 @@ df.sort_index
 df.head(5)
 
 #d
-df1 = df.replace('United_States_of_America', 'USA').replace('United Kingdom','UK')
-df1.head()
+df = df.replace('United_States_of_America', 'USA').replace('United Kingdom','UK')
+df.head(30)
 
 #e
+df[df['countriesAndTerritories'].isin
+     (['Argentina', 'Brazil','China', 'Colombia', 'India', 'Italy', 'Mexico', 'Peru', 'Russia', 'Spain', 'Turkey', 'USA',"UK"])]
+     
+#f
+pivoted_df = df.pivot(index = 'date', columns = 'countriesAndTerritories',values = 'cases').fillna(0)
+pivoted_df
 
