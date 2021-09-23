@@ -1,17 +1,49 @@
 #Exercise 1
 import pandas as pd
 #a)
-df = pd.read_csv('/aapl.csv')
-df1 = pd.read_csv('/amzn.csv')
-df2 = pd.read_csv('/fb.csv')
-df3 = pd.read_csv('/goog.csv')
-df4 = pd.read_csv('/nflx.csv')
+df1 = pd.read_csv('/aapl.csv')
+df2 = pd.read_csv('/amzn.csv')
+df3 = pd.read_csv('/fb.csv')
+df4 = pd.read_csv('/goog.csv')
+df5 = pd.read_csv('/nflx.csv')
+
 #b
-df['ticker'] = 'AAPL'
-df1['ticker'] = 'AMZN'
-df2['ticker'] = 'FB'
-df3['ticker'] = 'GOOG'
-df4['ticker'] = 'NFLX'
+df1['ticker'] = 'AAPL'
+df2['ticker'] = 'AMZN'
+df3['ticker'] = 'FB'
+df4['ticker'] = 'GOOG'
+df5['ticker'] = 'NFLX'
+
 #c
-df = pd.concat([df1,df2,df3,df4,df5], axis = 0, join = 'inner').sort_index
+df = pd.concat([df1,df2,df3,df4,df5])
 df
+
+#d
+pd.DataFrame.to_csv(df, 'faang.csv')
+
+#e
+df['date'] = pd.to_datetime(df['date'])
+df.set_index('date', inplace= True)
+df
+
+df['volume'] = df['volume'].astype(int)
+df.sort_values(by = ['date', 'ticker'])
+df
+
+#f
+df.sort_values(by = ['volume'], ascending= True).head(7)
+
+#Exercise 2
+#a
+df = pd.read_csv('/covid19_cases.csv')
+df.head(5)
+
+#b
+df['date'] = df['dateRep']
+df['date'] = pd.to_datetime(df.date)
+df.head(5)
+
+#c
+df.set_index('date', inplace = True)
+df.sort_index
+df.head(5)
