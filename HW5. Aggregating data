@@ -1,0 +1,17 @@
+#Exercise2
+
+fb = pd.read_csv('/content/fb_2018.csv')
+#Calculate the percentage change between that and and last day in volumn (pct_change method)
+fb_new = fb.assign(pct_change = lambda x: x.volume.pct_change())
+fb_new.head()
+#Sort the dataframe by percentage change then get five days that have the biggest change. 
+fb_new.sort_values('pct_change').head()
+
+# Exercise 3
+
+df = pd.read_csv('/content/earthquakes.csv')
+df1 = df[(df['magType'] == 'ml')]
+df1.head()
+#Create bins for each full number of earthquake magnitude (for instance, the first bin is (0, 1], the second is (1, 2], and so on) with the ml magnitude type and count how many are in each bin.
+mag_binned = pd.cut(df1.mag, [0,1,2,3,4,5], labels= ['low', 'normal', 'medium', 'high','dangeous'])
+mag_binned.value_counts()
