@@ -1,4 +1,4 @@
-import pandas as ps
+import pandas as pd
 #Exercise 1:Load dataset nyc_weather_2018 and weather_stations, then calculate the average elevation of stations that calculat‘SNOW’ and contains ‘NJ US’ in its name
  
 weather = pd.read_csv('/nyc_weather_2018.csv')
