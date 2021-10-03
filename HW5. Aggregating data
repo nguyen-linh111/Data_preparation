@@ -1,3 +1,20 @@
+import pandas as ps
+#Exercise 1:Load dataset nyc_weather_2018 and weather_stations, then calculate the average elevation of stations that calculat‘SNOW’ and contains ‘NJ US’ in its name
+ 
+weather = pd.read_csv('/nyc_weather_2018.csv')
+station = pd.read_csv('/content/weather_stations.csv')
+
+station =  station.rename(dict (id = "station"), axis = 1)
+station.head()
+
+weather_new = weather.drop_duplicates(subset= ['datatype', 'station'])
+weather_new.shape
+
+ds = weather_new.merge(station, on = 'station')
+ds.head()
+ds.elevation[(ds.datatype == "SNOW") & (ds.name.str.contains("NJ US"))].mean()
+
+
 #Exercise2
 
 fb = pd.read_csv('/content/fb_2018.csv')
@@ -15,3 +32,19 @@ df1.head()
 #Create bins for each full number of earthquake magnitude (for instance, the first bin is (0, 1], the second is (1, 2], and so on) with the ml magnitude type and count how many are in each bin.
 mag_binned = pd.cut(df1.mag, [0,1,2,3,4,5], labels= ['low', 'normal', 'medium', 'high','dangeous'])
 mag_binned.value_counts()
+
+#Exercise 4: Load the dataset weather_by_station
+ws = pd.read_csv('/weather_by_station.csv')
+ws.head()
+
+#Calculate the mean value each station recorded snow per month
+snow = ws[ws.datatype == 'SNOW']
+snow = snow.assign(month = pd.DatetimeIndex(snow.date).month)
+snow.head()
+snow.groupby(['station','month']).mean()
+
+#Count the number of times each station recorded snow per month
+pd.crosstab(index= snow.station, columns= snow.month, colnames= ['month'])
+
+
+
